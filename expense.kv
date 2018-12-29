@@ -1,0 +1,210 @@
+<TextInput>:
+    multiline: False
+    write_tab: False
+    font_size: 25
+<Label>:
+    font_size: 20
+    color: 0.3, 0.3, 0.3, 1
+<PaddingBoxLayout@BoxLayout>:
+    padding: 22
+<LoginScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos:self.pos
+                size:self.size
+
+        Label:
+            size_hint_y: 1.5
+            text: "ログイン画面"
+            font_size: 32
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: 8.5
+
+            PaddingBoxLayout:
+                Label:
+                    text: "ユーザーID"
+
+                TextInput:
+                    id: text_userID
+
+            PaddingBoxLayout:
+                Label:
+                    text: "パスワード"
+
+                TextInput:
+                    id: text_password
+                    password: True
+
+            Label:
+                id: error_message
+                text: ""
+                color: 1, 0, 0, 1
+
+            Label:
+                text: ""
+
+            PaddingBoxLayout:
+                Label:
+                    text: ""
+
+                Button:
+                    text: "ログイン"
+                    color: 1, 1, 1, 1
+                    on_press: root.loginButtonClicked()
+
+<InputScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgba: 0.95, 0.95 ,0.95 ,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        PaddingBoxLayout:
+            padding: 2
+            size_hint_y: 0.08
+            Label:
+
+            BoxLayout:
+                Label:
+                Button:
+                    text: "表示"
+                    color: 1, 1, 1, 1
+                    on_press: root.resultButtonClicked()
+
+        Label:
+            text: "登録画面"
+            size_hint_y: 0.15
+            font_size: 32
+
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: 0.77
+
+            PaddingBoxLayout:
+                Label:
+                    text: "日付"
+                TextInput:
+                    id:acc_date
+
+            PaddingBoxLayout:
+                Label:
+                    text: "内訳"
+                Spinner:    # 内訳のリスト表示
+                    background_normal: ''
+                    background_color: 0.92, 0.92 ,0.92 ,1
+                    id:item_code
+                    text:'食費'
+                    values:['食費','住宅費','光熱費']
+
+
+            PaddingBoxLayout:
+                Label:
+                    text: "金額"
+                TextInput:
+                    id:amount
+
+            PaddingBoxLayout:
+                Label:
+
+                BoxLayout:
+                    Button:
+                        text: "申請"
+                        color: 1, 1, 1, 1
+                        on_press: root.submitButtonClicked()
+                    Button:
+                        text: "クリア"
+                        color: 1, 1, 1, 1
+                        on_press: root.clearButtonClicked()
+
+<ResultScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgba: 0.95, 0.95 ,0.95 ,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        PaddingBoxLayout:
+            padding: 2
+            size_hint_y: 0.08
+            Label:
+
+            BoxLayout:
+                Label:
+                Button:
+                    text: "入力"
+                    color: 1, 1, 1, 1
+                    on_press: root.loginButtonClicked()
+
+        Label:
+            size_hint_y: 0.12
+            text: "表示画面"
+            font_size: 32
+
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: 0.1
+
+            PaddingBoxLayout:
+                padding: 1
+                BoxLayout:
+                    padding:1
+                    Label:
+                        canvas.before:
+                            Color:
+                                rgba: 0.92, 0.92 ,0.92 ,1
+                            Rectangle:
+
+                                pos: self.pos
+                                size: self.size
+                        text: "年月日"
+                BoxLayout:
+                    padding:1
+                    Label:
+                        canvas.before:
+                            Color:
+                                rgba: 0.92, 0.92 ,0.92 ,1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        text: "内訳"
+                BoxLayout:
+                    padding:1
+                    Label:
+                        canvas.before:
+                            Color:
+                                rgba: 0.92, 0.92 ,0.92 ,1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        text: "金額"
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: 0.7
+            BoxLayout:
+                orientation: 'horizontal'
+
+                ListView:
+                    item_strings: [str(index[0]) for index in root.list]
+                    size_hint_x: 0.3
+
+
+                ListView:
+                    item_strings: [str(index[1]) for index in root.list2]
+                    size_hint_x: 0.3
+
+                ListView:
+                    item_strings: [str(index[2]) for index in root.list3]
+                    size_hint_x: 0.3
